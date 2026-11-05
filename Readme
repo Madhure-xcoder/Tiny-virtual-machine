@@ -1,0 +1,352 @@
+
+# Tiny Virtual Machine for Intermediate Code Execution
+
+## Project Overview
+
+The **Tiny Virtual Machine (TVM)** is a simple virtual machine developed using the C programming language. It is designed to execute intermediate code instructions and demonstrate how a virtual machine works internally.
+
+The project simulates the basic working of a processor by loading instructions, decoding them, and executing them one by one.
+
+It supports arithmetic operations, variables, conditional statements, loops, labels, stack operations, and bytecode-style instruction execution.
+
+## Objectives
+
+- To understand the working principles of a virtual machine.
+- To learn how intermediate code is executed.
+- To implement an instruction execution cycle.
+- To perform arithmetic and logical operations.
+- To understand stack-based memory operations.
+- To implement conditional jumps and loops.
+- To develop a simple interpreter using C.
+
+## Technologies Used
+
+| Technology | Purpose |
+|---|---|
+| C Language | Main programming language |
+| GCC Compiler | Compilation |
+| Command Prompt | Program execution |
+| Three-Address Code (TAC) | Intermediate instructions |
+| Git & GitHub | Version control and project hosting |
+
+## Main Features
+
+1. **Instruction Loading:** Reads intermediate instructions from a text file.
+2. **Variable Management:** Stores and updates variable values.
+3. **Arithmetic Operations:** Supports addition, subtraction, multiplication, and division.
+4. **Comparison Operations:** Supports LT, GT, EQ, LE, and GE.
+5. **Conditional Jump:** Supports JZ and JNZ.
+6. **Unconditional Jump:** Supports JMP.
+7. **Loop Execution:** Repeats instructions using labels and jumps.
+8. **Stack Management:** Supports PUSH and POP operations.
+9. **Stack Arithmetic:** Performs calculations using stack values.
+10. **Program Counter:** Tracks the current instruction.
+11. **Error Handling:** Detects errors such as division by zero, stack overflow, and stack underflow.
+12. **Program Termination:** Uses HALT to stop execution.
+
+## Project Development Phases
+
+### Phase 1: Basic Virtual Machine
+
+Implemented the basic instruction execution system.
+
+Features:
+- SET
+- ADD
+- SUB
+- MUL
+- DIV
+- PRINT
+- JMP
+- JZ
+- HALT
+
+### Phase 2: Control Flow Execution
+
+Added conditional and loop-based execution.
+
+Features:
+- Labels
+- LT
+- GT
+- EQ
+- LE
+- GE
+- JZ
+- JNZ
+- JMP
+
+### Phase 3: Stack and Bytecode Execution
+
+Introduced stack-based instruction execution.
+
+Features:
+- PUSH
+- POP
+- Stack-based ADD
+- Stack-based SUB
+- Stack-based MUL
+- Stack-based DIV
+- Stack overflow detection
+- Stack underflow detection
+
+### Phase 4: Integrated Virtual Machine
+
+Combined the previous features into a single virtual machine.
+
+Features:
+- Variable-based arithmetic
+- Stack-based arithmetic
+- Conditional execution
+- Loop execution
+- Label management
+- Integrated instruction execution
+- Final variable and stack display
+
+## System Architecture
+
+The virtual machine follows a simple instruction execution architecture.
+
+```text
+        Start
+          |
+          v
+   Load Program File
+          |
+          v
+   Parse Instructions
+          |
+          v
+   Initialize Virtual Machine
+          |
+          v
+    Fetch Instruction
+          |
+          v
+   Decode Instruction
+          |
+          v
+   Execute Instruction
+          |
+          v
+   Update Program Counter
+          |
+          v
+      Is HALT?
+       /     \
+      No      Yes
+      |        |
+      v        v
+  Fetch Next  Display
+ Instruction  Final Result
+               |
+               v
+              End
+```
+
+## Instruction Set
+
+| Instruction | Description | Example |
+|---|---|---|
+| SET | Assigns a value to a variable | SET a 10 |
+| ADD | Adds two values | ADD result a b |
+| SUB | Subtracts two values | SUB result a b |
+| MUL | Multiplies two values | MUL result a b |
+| DIV | Divides two values | DIV result a b |
+| LT | Checks less than | LT result a b |
+| GT | Checks greater than | GT result a b |
+| EQ | Checks equality | EQ result a b |
+| LE | Checks less than or equal | LE result a b |
+| GE | Checks greater than or equal | GE result a b |
+| JMP | Jumps to a label | JMP LOOP |
+| JZ | Jumps if value is zero | JZ x END |
+| JNZ | Jumps if value is non-zero | JNZ x END |
+| PUSH | Pushes a value onto the stack | PUSH 10 |
+| POP | Removes the top stack value | POP |
+| PRINT | Displays a variable or stack value | PRINT result |
+| HALT | Stops program execution | HALT |
+
+## Working Principle
+
+The virtual machine works using the following steps:
+
+1. The program reads the intermediate code from a file.
+2. The loader stores the instructions in an instruction array.
+3. Labels are stored with their corresponding instruction addresses.
+4. The Program Counter (PC) identifies the current instruction.
+5. The instruction is decoded according to its opcode.
+6. The virtual machine performs the required operation.
+7. Variables and stack values are updated.
+8. The process continues until the HALT instruction is reached.
+9. Finally, the program displays the output, variables, and stack.
+
+## Sample Program
+
+The following program calculates the sum of numbers from 1 to 5 and then multiplies the result by 2.
+
+```text
+SET i 1
+SET sum 0
+SET limit 5
+
+LOOP:
+GT check i limit
+JNZ check STACK
+
+ADD sum sum i
+ADD i i 1
+JMP LOOP
+
+STACK:
+PUSH sum
+PUSH 2
+MUL
+PRINT
+HALT
+```
+
+### Expected Output
+
+```text
+=== Tiny Virtual Machine ===
+Phase 4: Integrated VM Execution
+
+Output: 30.00
+Program halted.
+
+--- Final Variables ---
+i = 6.00
+sum = 15.00
+limit = 5.00
+check = 1.00
+
+--- Final Stack ---
+30.00
+```
+
+## Project Folder Structure
+
+```text
+TinyVirtualMachine/
+│
+├── tvm.c
+│
+├── program.tac
+│
+├── tvm.exe
+│
+└── README.md
+```
+
+**File Description:**
+
+- `tvm.c` - Contains the complete virtual machine implementation.
+- `program.tac` - Contains intermediate code instructions.
+- `tvm.exe` - Compiled executable file (generated after compilation).
+- `README.md` - Project documentation.
+
+## Installation and Execution
+
+### Requirements
+
+- Windows Operating System
+- GCC Compiler (MinGW)
+- Command Prompt or Terminal
+
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/Madhure-xcoder/Tiny-virtual-machine.git
+```
+
+### Step 2: Open the Project Folder
+
+```bash
+cd Tiny-virtual-machine
+```
+
+### Step 3: Compile the Program
+
+```bash
+gcc tvm.c -o tvm
+```
+
+### Step 4: Run the Virtual Machine
+
+```bash
+tvm.exe program.tac
+```
+
+The virtual machine will load the intermediate code and execute the instructions.
+
+## Error Handling
+
+The project includes basic error detection:
+
+- **Division by Zero:** Prevents division by zero.
+- **Stack Overflow:** Detects when the stack is full.
+- **Stack Underflow:** Detects when the stack is empty.
+- **Unknown Instruction:** Detects unsupported instructions.
+- **Invalid Label:** Detects missing jump labels.
+- **Execution Limit:** Prevents unlimited instruction execution.
+
+## Applications
+
+- Understanding virtual machine architecture.
+- Learning compiler design concepts.
+- Understanding intermediate code execution.
+- Studying stack-based execution.
+- Learning instruction interpretation.
+- Understanding program counters and control flow.
+
+## Limitations
+
+- Supports a limited instruction set.
+- Uses a simple variable table.
+- Executes textual instructions instead of native machine code.
+- Does not generate executable machine-code binaries.
+- Does not implement a complete compiler.
+
+## Future Enhancements
+
+- Add more advanced instructions.
+- Implement functions and procedure calls.
+- Add support for arrays and strings.
+- Implement memory management.
+- Add debugging and step-by-step execution.
+- Develop a graphical user interface.
+- Add file-based program testing.
+- Implement a more advanced bytecode format.
+
+## Learning Outcomes
+
+Through this project, we learned:
+
+- C programming and memory management.
+- Instruction parsing and execution.
+- Intermediate code interpretation.
+- Stack-based operations.
+- Conditional statements and loops.
+- Basic virtual machine architecture.
+- Error detection and debugging.
+- Git and GitHub project management.
+
+## Conclusion
+
+The Tiny Virtual Machine project demonstrates the basic working principles of a virtual machine using the C programming language.
+
+It provides a practical understanding of instruction loading, decoding, execution, variable management, stack operations, and control flow.
+
+This project helped us understand how intermediate instructions can be interpreted and executed by a simple virtual machine.
+
+## Author
+
+Madhure Das
+
+B.Tech in Computer Science and Engineering
+
+Brainware University
+
+## License
+
+This project is created for educational and academic purposes.
